@@ -26,4 +26,25 @@
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
   }
+
+  document.body.classList.add('js-ready');
+
+  // 카드/제품/ops 항목 스크롤 진입 시 fade-in
+  if ('IntersectionObserver' in window) {
+    const revealTargets = document.querySelectorAll(
+      '.card, .product, .ops-list > li'
+    );
+    const revealObs = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObs.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+    );
+    revealTargets.forEach((el) => revealObs.observe(el));
+  }
 })();

@@ -684,8 +684,112 @@ ul, ol, dl {
   gap: 8px;
 }
 
+/* ============ MOBILE DENSITY (< 720px) ============ */
+@media (max-width: 720px) {
+  .section {
+    padding: clamp(48px, 8vw, 96px) 0;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  /* 4셀 stat 데이터를 2x2 로 — 길게 늘어지던 세로 스택 해소 */
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 40px;
+  }
+
+  .stat-grid li {
+    padding: 18px;
+  }
+
+  /* 3개짜리 stat-grid (Products, Web) — 마지막 셀이 빈칸 안 남도록 2칸 폭 */
+  .stat-grid li:nth-child(3):last-child {
+    grid-column: span 2;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .section-lead {
+    margin-bottom: 32px;
+  }
+
+  .hero-meta {
+    padding: 20px 0;
+  }
+
+  .ops-list li {
+    padding: 18px;
+  }
+
+  .product-body {
+    padding: 20px 20px 24px;
+  }
+
+  .product-media {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* 중간 폰(가로 481~720): 4-card grid 도 2-col 로 */
+@media (min-width: 481px) and (max-width: 720px) {
+  .card-grid--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 작은 폰(<= 480) */
 @media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
   .hero-title {
     font-size: clamp(28px, 8vw, 40px);
   }
+
+  /* About 강점 카드는 텍스트가 짧아 작은 폰에서도 2-col 유지 가능 */
+  #about .card-grid--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* stat-grid 의 큰 숫자 톤다운 */
+  .stat-grid strong {
+    font-size: 22px;
+  }
+
+  .stat-grid li {
+    padding: 14px;
+  }
 }
+
+/* ============ SCROLL REVEAL ============ */
+/* JS 로딩된 후에만 hidden 상태 적용 — no-JS 환경에서 그대로 보임 */
+.js-ready .card,
+.js-ready .product,
+.js-ready .ops-list > li {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.js-ready .card.is-visible,
+.js-ready .product.is-visible,
+.js-ready .ops-list > li.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-ready .card,
+  .js-ready .product,
+  .js-ready .ops-list > li {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
