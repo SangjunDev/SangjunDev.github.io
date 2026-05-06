@@ -1,6 +1,6 @@
 # 김상준 · Portfolio 2026
 
-`포트폴리오_최종.pptx` 의 14개 슬라이드를 기반으로 만든 정적 랜딩 페이지.
+`포트폴리오.pptx` 의 14개 슬라이드를 기반으로 만든 정적 랜딩 페이지.
 GitHub Pages(User Pages)로 호스팅하기 위해 Vanilla HTML / CSS / JS 만 사용했습니다.
 
 ## 폴더 구조
